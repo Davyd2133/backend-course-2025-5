@@ -1,0 +1,14 @@
+# GET (cache-miss → http.cat → кеш)
+curl.exe -v http://localhost:3000/200 -o 200.jpg
+
+# GET (із кешу)
+curl.exe -v http://localhost:3000/200 -o 200_cached.jpg
+
+# PUT (записати/оновити 201)
+curl.exe -v -X PUT http://localhost:3000/201 --data-binary "@200.jpg"
+
+# DELETE (видалити 200 з кешу)
+curl.exe -v -X DELETE http://localhost:3000/200
+
+# POST (має бути 405)
+curl.exe -v -X POST http://localhost:3000/200
